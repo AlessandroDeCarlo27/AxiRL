@@ -86,16 +86,16 @@ df_nowindow <- pat_df[pat_df$bid10<90,]
 pat_list[[length(pat_list)+1]] <- df_nowindow %>% filter(BP0<70) %>% sample_n(1) %>% 
                                   mutate(Descr="No window <70")
 pat_list[[length(pat_list)+1]] <- df_nowindow %>% filter(BP0>=70 & BP0<80) %>% sample_n(1) %>%
-                                  mutate(Descr="No window [70,80)")
+                                  mutate(Descr="No window [70-80)")
 pat_list[[length(pat_list)+1]] <- df_nowindow %>% filter(BP0>=80 & BP0<=90) %>% sample_n(1) %>%
-                                        mutate(Descr="No window [80,90)")
+                                        mutate(Descr="No window [80-90)")
 
 df_hightol <- pat_df[pat_df$bid10>=90 & pat_df$bid10<=100,]
 
 pat_list[[length(pat_list)+1]] <- df_hightol %>% filter(BP0>=70 & BP0<80) %>% sample_n(1) %>%
-                                    mutate(Descr="Max Dose optimal [70,80)")
+                                    mutate(Descr="Max Dose optimal [70-80)")
 pat_list[[length(pat_list)+1]] <- df_hightol %>% filter(BP0>=80 & BP0<=90) %>% sample_n(1) %>%
-                                    mutate(Descr="Max Dose optimal [80,90)")
+                                    mutate(Descr="Max Dose optimal [80-90)")
 #############
 tox_log <- pat_df
 tox_log[,4:8] <-tox_log[,4:8]>=105
@@ -131,7 +131,7 @@ pat_list[[length(pat_list)+1]] <- tox_log_f_10 %>% sample_n(1)  %>% select(!c(Fi
 
 tox_log_f_10_2ok <- tox_log_f %>% filter(FirstTox=="bid10" & bid2<100)
 pat_list[[length(pat_list)+1]] <- tox_log_f_10_2ok %>% sample_n(1)  %>% 
-  mutate(Descr="First Dose for severe toxicity: bid10, bid2 target wind")%>%
+  mutate(Descr="First Dose for severe toxicity: bid10- bid2 target wind")%>%
   select(!c(FirstTox))
 ##################
 no_tox <-  pat_df %>% filter(! id %in% tox_log_f$id)
