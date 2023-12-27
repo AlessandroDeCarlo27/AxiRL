@@ -151,7 +151,7 @@ summary(no_tox_f$FirstDose)
 no_tox_f[,4:8] <- pat_df[pat_df$id %in% no_tox_f$id,4:8] 
 no_tox_f <- no_tox_f %>% select(! FlagD) %>%
   filter(FirstDose!="bid10") %>% 
-  mutate(Descr=paste("Min window dose:",FirstDose))# those with 10 bid were in df_hightol var.
+  mutate(Descr=paste("Max window dose:",FirstDose))# those with 10 bid were in df_hightol var.
 
 no_tox_f2 <- no_tox_f %>% filter(FirstDose=="bid2")
 pat_list[[length(pat_list)+1]] <- no_tox_f2 %>% sample_n(1) %>% select(! FirstDose)
