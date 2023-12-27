@@ -1,0 +1,27 @@
+DESCRIPTION:
+Axitinib effect on Diastolic Blood Pressure
+[LONGITUDINAL]
+input = {CL,bpBase,bp0,AX,AH}
+
+PK:
+
+
+F = 0.457*(1-0.121)
+AUC=F*AX*2*1000/CL
+MRTbp = 4.92
+koutBp = 1/MRTbp
+Emax = 0.197
+RinBP = koutBp*bpBase
+Slope = 0.00127
+
+
+EQUATION:
+EffBp = (Emax*Slope*AUC)/(Emax+(Slope*AUC))
+EffAH = 1/(1+(0.036*AH))
+
+bp_0 = bp0 ;; da modificare quando faccio le cose a step
+
+ddt_bp = RinBP*(1+EffBp)*EffAH - koutBp*bp
+
+OUTPUT:
+output={bp}
