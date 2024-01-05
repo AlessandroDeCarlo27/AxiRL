@@ -45,7 +45,7 @@ Q_table_ind.validation <- Q_table_ind.list
 
 ############## scenario params ######################
 
-n_episodes=100*1e3 #(training+validation)
+n_episodes=10#0*1e3 #(training+validation)
 n_cyc=24 #number of cycles
 freq_validation=2
 n_validation_episodes=n_episodes/freq_validation
